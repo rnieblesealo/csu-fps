@@ -363,7 +363,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 560086238}
-  - component: {fileID: 560086240}
   - component: {fileID: 560086239}
   m_Layer: 0
   m_Name: arms
@@ -410,18 +409,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &560086240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 560086237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cb196812f7d14b4687b4a7df04e7180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &585027369
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +525,7 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: rig
   m_TagString: MainCamera
@@ -613,6 +601,19 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb196812f7d14b4687b4a7df04e7180, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 560086239}
 --- !u!1 &1017280761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,9 +1150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2dd6dbeb172ff4babdc52ae426fc38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xLookSensitivity: 250
-  yLookSensitivity: 250
-  moveSpeed: 7.5
+  xLookSensitivity: 300
+  yLookSensitivity: 300
+  moveSpeed: 10
 --- !u!1 &1809488319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,6 +1545,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 543450652310597568}
+  - component: {fileID: 919132148305048955}
+  - component: {fileID: 919132148305048956}
   m_Layer: 0
   m_Name: mp5
   m_TagString: Untagged
@@ -1551,6 +1554,41 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &919132148305048955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148305048954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1710001875e51409f9203a70d4acff79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 900
+  reloadDuration: 0.658
+--- !u!95 &919132148305048956
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148305048954}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9b008c006c8aee043b79e639a5b48997, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1011194813353440063
 Transform:
   m_ObjectHideFlags: 0
