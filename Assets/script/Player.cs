@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {		
+	// make these serial privates
 	public float xLookSensitivity;
 	public float yLookSensitivity;
-	
 	public float moveSpeed;
-		
+	public int maxHealth;
+	[HideInInspector] public int currentHealth;
+			
 	private Transform tCamera;
-	
 	private CharacterController controller;
+	private WalkAnimation walkAnimation;
 	
 	private float xOffset;
 	
@@ -22,7 +20,7 @@ public class Player : MonoBehaviour
 		float xInput = Input.GetAxis("Mouse X") * xLookSensitivity;
 		float yInput = Input.GetAxis("Mouse Y") * yLookSensitivity;
 		
-		transform.Rotate(Vector3.up * xInput * Time.deltaTime);
+		transform.Rotate(Time.deltaTime * xInput * Vector3.up);
 	
 		xOffset -= yInput * Time.deltaTime;
 		xOffset = Mathf.Clamp(xOffset, -90, 90);
@@ -44,12 +42,15 @@ public class Player : MonoBehaviour
 	{
 		controller = GetComponent<CharacterController>();
 		tCamera = GetComponentInChildren<Camera>().transform;
+		walkAnimation = GetComponentInChildren<WalkAnimation>();
 	}
 
 	private void Start()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
+		
+		currentHealth = maxHealth;
 	}
 
 	// Update is called once per frame
@@ -57,5 +58,7 @@ public class Player : MonoBehaviour
 	{
 		Look();
 		Move();
+		
+		walkAnimation.apply = controller.velocity != Vector3.zero;
 	}
 }
