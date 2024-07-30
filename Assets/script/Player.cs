@@ -10,11 +10,24 @@ public class Player : MonoBehaviour
 	public int maxHealth;
 			
 	[SerializeField] private Transform cameraRig;
+	[SerializeField] private Animator body;
 	
 	private CharacterController controller;
 	private WalkAnimation walkAnimation;
 	
 	private float xOffset;
+	private string bodyAnim;
+	
+	private void SetBodyAnim(string anim)
+	{
+		if (anim == bodyAnim)
+		{
+			return;
+		}
+		
+		body.CrossFade(anim, 0.2f, -1, 0);
+		bodyAnim = anim;
+	}
 	
 	private void Look()
 	{
@@ -59,6 +72,16 @@ public class Player : MonoBehaviour
 		Look();
 		Move();
 		
-		walkAnimation.apply = controller.velocity != Vector3.zero;
+		if (controller.velocity == Vector3.zero)
+		{
+			walkAnimation.apply = false;
+			SetBodyAnim("idle");		
+		}
+		
+		else
+		{
+			walkAnimation.apply = true;
+			SetBodyAnim("move");
+		}
 	}
 }

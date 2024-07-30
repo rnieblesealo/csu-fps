@@ -12,12 +12,12 @@ public class Gun : MonoBehaviour
 	[HideInInspector] public int currentReserve;
 
 	[Header("Components")]
+	[SerializeField] private Animator armsAnim;
+	[SerializeField] private Animator gunAnim;
 	[SerializeField] private AudioSource audioSource;
 	[SerializeField] private ParticleSystem[] muzzleFlash;
 	[SerializeField] private AudioClip[] soundEffects;
 	
-	private Arms arms;
-	private Animator anim;
 	private Coroutine activeState;
 
 	private void PlaySoundEffect(int index)
@@ -34,8 +34,8 @@ public class Gun : MonoBehaviour
 	{
 		currentAmmo--;
 		
-		anim.Play("shoot", -1, 0);
-		arms.anim.Play("shoot", -1, 0);
+		gunAnim.Play("shoot", -1, 0);
+		armsAnim.Play("shoot", -1, 0);
 		
 		foreach (ParticleSystem s in muzzleFlash)
 		{
@@ -46,20 +46,20 @@ public class Gun : MonoBehaviour
 		
 		yield return new WaitForSeconds(60 / fireRate);
 		
+		foreach (ParticleSystem s in muzzleFlash)
+		{
+			s.Stop();
+		}
+		
 		activeState = null;
 		yield break;
 	}
 	
 	private IEnumerator Reload()
 	{
-		anim.Play("reload", -1, 0);
-		arms.anim.Play("reload", -1, 0);
-		
-		foreach (ParticleSystem s in muzzleFlash)
-		{
-			s.Stop();
-		}
-		
+		gunAnim.Play("reload", -1, 0);
+		armsAnim.Play("reload", -1, 0);
+				
 		yield return new WaitForSeconds(reloadDuration);
 		
 		int neededAmmo = maxAmmo - currentAmmo;
@@ -80,12 +80,6 @@ public class Gun : MonoBehaviour
 		yield break;
 	}
 	
-	private void Awake()
-	{
-		arms = GetComponentInParent<Arms>();
-		anim = GetComponentInChildren<Animator>();
-	}
-
 	private void Start()
 	{
 		currentAmmo = maxAmmo;

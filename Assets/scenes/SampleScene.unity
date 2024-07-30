@@ -11351,7 +11351,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1373022814}
-  - component: {fileID: 1373022816}
   - component: {fileID: 1373022815}
   - component: {fileID: 1373022817}
   m_Layer: 0
@@ -11392,19 +11391,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoothness: 10
   multiplier: 2.5
---- !u!114 &1373022816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1373022813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cb196812f7d14b4687b4a7df04e7180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 560086239}
 --- !u!114 &1373022817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11707,9 +11693,10 @@ MonoBehaviour:
   currentHealth: 0
   xLookSensitivity: 300
   yLookSensitivity: 300
-  moveSpeed: 5
+  moveSpeed: 2
   maxHealth: 100
   cameraRig: {fileID: 2457346475951174627}
+  body: {fileID: 919132149008260819}
 --- !u!1 &1758320237
 GameObject:
   m_ObjectHideFlags: 0
@@ -12543,6 +12530,8 @@ MonoBehaviour:
   maxReserve: 120
   currentAmmo: 0
   currentReserve: 0
+  armsAnim: {fileID: 560086239}
+  gunAnim: {fileID: 919132148305048956}
   audioSource: {fileID: 1908276475}
   muzzleFlash:
   - {fileID: 388467409}
