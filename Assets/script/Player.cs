@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {		
-	// make these serial privates
+	[HideInInspector] public int currentHealth;
+	
 	public float xLookSensitivity;
 	public float yLookSensitivity;
 	public float moveSpeed;
 	public int maxHealth;
-	[HideInInspector] public int currentHealth;
 			
-	private Transform tCamera;
+	[SerializeField] private Transform cameraRig;
+	
 	private CharacterController controller;
 	private WalkAnimation walkAnimation;
 	
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour
 		xOffset -= yInput * Time.deltaTime;
 		xOffset = Mathf.Clamp(xOffset, -90, 90);
 		
-		tCamera.localRotation = Quaternion.Euler(Vector3.right * xOffset);
+		cameraRig.localRotation = Quaternion.Euler(Vector3.right * xOffset);
 	}
 
 	private void Move()
@@ -41,7 +42,6 @@ public class Player : MonoBehaviour
 	private void Awake()
 	{
 		controller = GetComponent<CharacterController>();
-		tCamera = GetComponentInChildren<Camera>().transform;
 		walkAnimation = GetComponentInChildren<WalkAnimation>();
 	}
 

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: body-mask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: body
+    m_Weight: 1
+  - m_Path: body-rig
+    m_Weight: 1
+  - m_Path: body-rig/foot-pivot.l
+    m_Weight: 1
+  - m_Path: body-rig/foot-pivot.r
+    m_Weight: 1
+  - m_Path: body-rig/pole.l
+    m_Weight: 1
+  - m_Path: body-rig/pole.r
+    m_Weight: 1
+  - m_Path: body-rig/root
+    m_Weight: 1
+  - m_Path: body-rig/root/quad.l
+    m_Weight: 1
+  - m_Path: body-rig/root/quad.l/calf.l
+    m_Weight: 1
+  - m_Path: body-rig/root/quad.l/calf.l/foot.l
+    m_Weight: 1
+  - m_Path: body-rig/root/quad.r
+    m_Weight: 1
+  - m_Path: body-rig/root/quad.r/calf.r
+    m_Weight: 1
+  - m_Path: body-rig/root/quad.r/calf.r/foot.r
+    m_Weight: 1
+  - m_Path: body-rig/root/torso
+    m_Weight: 0
+  - m_Path: body-rig/root/torso/head
+    m_Weight: 1
