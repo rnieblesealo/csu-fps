@@ -4,14 +4,19 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
 	[Header("Traits")]
+	[SerializeField] private LayerMask hittable;
 	[SerializeField] private float fireRate;
-	[Tooltip("Ideally use the duration of the anim!")] [SerializeField] private float reloadDuration;
+	[SerializeField] private float reloadDuration;
+	[SerializeField] private float hitscanLength;
+	[SerializeField] private int damage;
 	[SerializeField] private int maxAmmo;
 	[SerializeField] private int maxReserve;
+
 	[HideInInspector] public int currentAmmo;
 	[HideInInspector] public int currentReserve;
 
 	[Header("Components")]
+	[SerializeField] private Transform cam;
 	[SerializeField] private Animator armsAnim;
 	[SerializeField] private Animator gunAnim;
 	[SerializeField] private AudioSource audioSource;
@@ -19,6 +24,21 @@ public class Gun : MonoBehaviour
 	[SerializeField] private AudioClip[] soundEffects;
 	
 	private Coroutine activeState;
+
+	private void CastShot()
+	{
+		Ray hitscan = new(cam.transform.position, cam.transform.forward);
+		
+		if (Physics.Raycast(hitscan, out RaycastHit hitInfo, hitscanLength, hittable))
+		{			
+			Damageable d = hitInfo.transform.GetComponent<Damageable>();
+			
+			if (d)
+			{
+				d.TakeDamage(damage);
+			}
+		}
+	}
 
 	private void PlaySoundEffect(int index)
 	{
@@ -33,6 +53,8 @@ public class Gun : MonoBehaviour
 	private IEnumerator Shoot()
 	{
 		currentAmmo--;
+		
+		CastShot();
 		
 		gunAnim.Play("shoot", -1, 0);
 		armsAnim.Play("shoot", -1, 0);
@@ -88,6 +110,8 @@ public class Gun : MonoBehaviour
 
 	private void Update()
 	{
+		Debug.DrawRay(cam.transform.position, cam.transform.forward, Color.red, 0, false);
+		
 		if (Input.GetKey(KeyCode.Mouse0) && activeState == null && currentAmmo > 0)
 			activeState = StartCoroutine(Shoot());
 		
